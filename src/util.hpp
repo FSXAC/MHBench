@@ -10,16 +10,6 @@
 #define MAX(x, y) ((x > y) ? x : y)
 #define SQ(x) (x * x)
 
-int * array_init_zero(int size) {
-    int idx = 0;
-    int *array = (int *) malloc(sizeof(int) * size);
-    while (idx < size) {
-        array[idx] = 0;
-    }
-
-    return array;
-}
-
 template<typename T>
 T* array_init_zero(int size) {
     int idx = 0;
@@ -43,11 +33,16 @@ T * array_init_rand(int size, int range) {
 }
 
 template<typename T>
-T * matrix_init_rand(int size, int range) {
-    int idx = 0;
+T* matrix_alloc(int size) {
     T *matrix = (T *) malloc(sizeof(T) * SQ(size));
-    for (idx < SQ(size)) {
-        matrix[idx] = rand() % range;
+    return matrix;
+}
+
+template<typename T>
+T * matrix_init_rand(int size, int range, T mult = 1.0) {
+    T *matrix = matrix_alloc<T>(size);
+    for (int idx = 0; idx < SQ(size); idx++) {
+        matrix[idx] = mult * (T) (rand() % range) / (T) range;
     }
 
     return matrix;

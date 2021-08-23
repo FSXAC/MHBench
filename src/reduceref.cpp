@@ -19,7 +19,7 @@ float find_max_row_index(float *A, int h, int k, int size) {
 void normalize_row(float *A, int row, int start_col, int size) {
     float f = A[row * size + start_col];
     for (int i = start_col; i < size; i++) {
-        A[row * size + j] /= f;
+        A[row * size + i] /= f;
     }
 }
 
